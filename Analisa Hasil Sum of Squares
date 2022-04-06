@@ -9,6 +9,6 @@ pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000
 field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")
 #Membandingkan dengan 2 cluster kmeans, masing-masing 2 dan 5
 set.seed(100)
-kmeans(x=pelanggan[field_yang_digunakan], center=2, nstart=25)
+kmeans(x=pelanggan[field_yang_digunakan], centers=2, nstart=25)
 set.seed(100)
-kmeans(x=pelanggan[field_yang_digunakan], center=5, nstart=25)
+kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)
