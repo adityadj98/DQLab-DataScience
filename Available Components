@@ -1,0 +1,40 @@
+Analisa terakhir kita dari code adalah bagian kelimat, yaitu sembilan komponen objek yang bisa kita gunakan untuk lihat detil dari objek k-means.
+Berikut adalah penjelasan singkat dari sembilan komponen tersebut.
+
+cluster, Vector dari cluster untuk tiap titik data.
+centers, Merupakan informasi titik centroid dari tiap cluster, seperti pada bagian "Analisa Hasil Cluster Means"
+totss, Total Sum of Squares (SS) untuk seluruh titik data
+withinss, Total Sum of Squares per cluster
+tot.withinss,Total penjumlahan dari tiap SS dari withinss
+betweenss, Perbedaan nilai antara totss dan tot.withinss
+size, Jumlah titik data pada tiap cluster
+iter, Jumlah iterasi luar yang digunakan oleh kmeans
+ifault, Nilai integer yang menunjukkan indikator masalah pada algoritma
+
+
+[CODINGAN]
+#Bagian Data Preparation
+pelanggan <- read.csv("https://storage.googleapis.com/dqlab-dataset/customer_segments.txt", sep="\t")
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])
+Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])
+pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")
+#Bagian K-Means
+set.seed(100)
+segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)
+segmentasi$withinss
+segmentasi$cluster
+segmentasi$tot.withinss
+
+
+
+
+
+
+
+
+
+
